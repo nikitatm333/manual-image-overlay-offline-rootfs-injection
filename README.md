@@ -146,3 +146,20 @@ sudo /sbin/losetup -d /dev/loop0
 приложением) на eMMC через USB/fastboot — после этого плата сразу
 полностью рабочая, без отдельных шагов.
 
+На плате:
+dd if=/dev/zero of=/dev/mmcblk0 bs=1M count=10
+sync 
+reboot
+
+На хосте
+# Проверяем usb
+lsusb
+# boot
+./usb-upload-boot-ds-rk3568-evb.sh
+# emmc
+./usb-upload-emmc-ds-rk3568-evb.sh
+
+
+
+sudo fastboot -i 7531 -S 128M flash emmc ds-rk3568-evb-sdcard.img
+
